@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Fixed header/footer content spacing solution */
+:root {
+  --header-height: 73px;
+  --footer-height: 57px;
+  scroll-padding-top: var(--header-height);
+}
+
+/* Global styles for fixed header/footer spacing */
+.content-container {
+  padding-top: var(--header-height);
+  padding-bottom: var(--footer-height);
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+}
+
+/* Ensure smooth scrolling behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Ensure anchor links account for fixed header */
+:target {
+  scroll-margin-top: var(--header-height);
+}
+
+/* Prevent content from being hidden under fixed elements on mobile */
+@media (max-width: 640px) {
+  :root {
+    --header-height: 65px;
+    --footer-height: 50px;
+  }
+}
+
+/* Book reader specific animations */
+@keyframes page-turn-out-left {
+  0% { transform: translateX(0) rotateY(0); }
+  100% { transform: translateX(-100%) rotateY(-90deg); }
+}
+
+@keyframes page-turn-in-right {
+  0% { transform: translateX(100%) rotateY(90deg); }
+  100% { transform: translateX(0) rotateY(0); }
+}
+
+@keyframes page-turn-out-right {
+  0% { transform: translateX(0) rotateY(0); }
+  100% { transform: translateX(100%) rotateY(90deg); }
+}
+
+@keyframes page-turn-in-left {
+  0% { transform: translateX(-100%) rotateY(-90deg); }
+  100% { transform: translateX(0) rotateY(0); }
+}
+
+.animate-page-turn-out-left {
+  animation: page-turn-out-left 0.3s ease-in-out forwards;
+}
+
+.animate-page-turn-in-right {
+  animation: page-turn-in-right 0.3s ease-in-out forwards;
+}
+
+.animate-page-turn-out-right {
+  animation: page-turn-out-right 0.3s ease-in-out forwards;
+}
+
+.animate-page-turn-in-left {
+  animation: page-turn-in-left 0.3s ease-in-out forwards;
+}
